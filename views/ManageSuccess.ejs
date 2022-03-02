@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <link rel="stylesheet" href="/css/Manage.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('navbarManage') %> 
+    <main class="manage-main">
+         <div class="container-managePO">
+            <h2>ออเดอร์ จัดส่งเรียบร้อย</h2>
+             <table class="table-managePO">
+                 <thead class="thead-managePO">
+                  
+                     <tr>
+                         <th>No.</th>
+                         <th>order number</th>
+                         <th>date buy</th>
+                         <th>custumer name</th>
+                         <th>Phone number</th>
+                         <th>Address</th>
+                         <th class="orderlist">customer Pay</th>
+                         <th>tracking No.</th>
+                         <th>timeapprove</th>
+                         <th>Detail custumer</th>
+                         <th>Delete</th>
+                     </tr>
+                 </thead>
+                 <tbody class="tbody-managePO">
+                    <% if (orders) { %>
+                        <% Object.values(orders).forEach(function(data,i){ %>
+                     <tr>
+                        <td><%= i+1 %></td>
+                        <td><%= data.Order_No %></td>
+                        <td><%= data.customer_timebuy %></td>
+                        <td><span><%= data.customer_name %></span><span><%= data.customer_lastname %></span></td>
+                        <td><%= data.customer_phone %></td>
+                        <td> <%= data.customer_address %> ต.<%= data.customer_subdistrict %> <%= data.customer_district %>  <%= data.customer_provine %>  <%= data.customer_zipcode %> </td>
+                        <td><%= data.total_pay %></td>
+                        <td><%= data.tracking_No %></td>
+                        <td><%= data.customer_timeapprove %> </td>
+                        <td><a href="#"><button type="button" class="detail-custumer">Detail Custumer</button></a></td>
+                        <td><a href="/delete-order-success/<%= data._id %>"><button type="button" class="delete-OR" onclick="return confirm('Delete Order?')">Delete Order</button></a></td>
+                     </tr>
+                    
+                    <% }) %>
+                    <% } %>
+                 </tbody>
+             </table>
+         </div>
+    </main>
+    <script src="/script/scrtiptManage.js"></script>
+</body>
+</html>

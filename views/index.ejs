@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parndhom | ปานหอม น้ำหอมติดรถยนต์</title>
+    <meta name="description" content="น้ำหอมรถยนต์แบรนด์ปานหอม parndhom เป็นน้ำหอมคุณภาพที่นำเข้าจากฝรั่งเศส ไร้แอลกอฮอล์ กลิ่นหอมหลากหลาย และอยู่ได้นาน">
+    <meta name="keywords" content="น้ำหอมติดรถยนต์,น้ำหอม,น้ำหอมรถยนต์,หัวน้ำหอม,ปานหอม,parndhom,น้ำหอมติดรถ,ประดับรถยนต์, E-commerce,perfume,กลิ่นหอม,รถหอม,ของตกแต่งรถยนต์">
+    <%- include('metashareClient') %> 
+    <link href="/image/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <%- include('headerClient') %>    
+
+    <main class="main-index">
+
+        <div class="container-proshow">
+            <div class="bg-proshow">
+                <% Object.values(advert).forEach(function(advert){ %>
+                <div class="proshow-content">
+                    <h3 class="blink_me"><%= advert.adv_header %></h3>
+                    <p class="adv-detail"><%= advert.adv_detail %></p>
+                </div>
+                <div class="proshow-image">
+                    <img src="/image/home/proshow_optimized.png" alt="ปานหอม">
+                </div>
+                <div class="proshow-product">
+                    <p class="title"><%= advert.adv_product %></p>
+                    <p class="price"><%= advert.adv_price %></p>
+                    <div class="star">
+                        <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                    </div>
+                    <span> <%= advert.adv_sizeProduct %></span>
+                </div>
+            </div>
+            <% }) %>
+            <div class="button-proshow">
+                <a href="/selectProduct"> <span>เลือกสินค้าได้ที่นี่</span> <i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+        <div class="con-content">
+            <% Object.values(content).forEach(function(content){ %>
+            <div class="content">
+                <h1><%= content.cb_header %> </h1>
+                <p><%= content.cb_title1 %> </p>
+                <p><%= content.cb_title2 %> </p>
+                <p><%= content.cb_title3 %> </p>
+                <ol>
+                    <li><%= content.cb_list1 %> </li>
+                    <li><%= content.cb_list2 %> </li>
+                    <li><%= content.cb_list3 %> </li>
+                    <li><%= content.cb_list4 %> </li>
+                    <li><%= content.cb_list5 %> </li>
+                    <li><%= content.cb_list6 %> </li>
+                    <li><%= content.cb_list7 %> </li>
+                    <li><%= content.cb_list8 %> </li>
+                    <li><%= content.cb_list9 %> </li>
+                </ol>
+                <p><%= content.cb_outtext %> <a href="/selectProduct">parndhom</a></p>
+            </div>
+            <% }) %>
+            <div class="popular">
+                <h3> 5 อันดับน้ำหอม ขายดี</h3>
+                <% Object.values(popular).forEach(function(popular){ %>
+               
+                <ul class="popular-ul">
+                    <li class="popular-li ">
+                        <span class="li-1"><%= popular.pop_1 %></span><span class="li-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </span>
+                        <p class="li-3"> <span>ยอดสั่งซื้อ</span><span><%= popular.pop_sell1 %></span><span>ชิ้น</span></p>
+                    </li>
+                    <li class="popular-li">
+                        <span class="li-1"><%= popular.pop_2 %></span><span class="li-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </span>
+                        <p class="li-3"> <span>ยอดสั่งซื้อ</span><span><%= popular.pop_sell2 %></span><span>ชิ้น</span></p>
+                    </li>
+                    <li class="popular-li">
+                        <span class="li-1"><%= popular.pop_3 %></span><span class="li-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></i>
+                        </span>
+                        <p class="li-3"> <span>ยอดสั่งซื้อ</span><span><%= popular.pop_sell3 %></span><span>ชิ้น</span></p>
+                    </li>
+                    <li class="popular-li">
+                        <span class="li-1"><%= popular.pop_4 %></span><span class="li-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></i>
+                        </span>
+                        <p class="li-3"> <span>ยอดสั่งซื้อ</span><span><%= popular.pop_sell1 %></span><span>ชิ้น</span></p>
+                    </li>
+                    <li class="popular-li">
+                        <span class="li-1"><%= popular.pop_5 %></span><span class="li-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i>
+                        </span>
+                        <p class="li-3"> <span>ยอดสั่งซื้อ</span><span><%= popular.pop_sell1 %></span><span>ชิ้น</span></p>
+                    </li>
+                </ul>
+                <% }) %>
+
+                <div class="ifram-facebook">
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fweb.facebook.com%2Fparndhom%3F_rdc%3D1%26_rdr&tabs=cover&width=450&height=175&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" width="450" height="175" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>  
+                </div>
+            </div>
+        </div>
+
+        <div class="box-review">
+   
+            <h5>น้ำหอมรถยนต์คุณภาพ นำเข้าจาก ฝรั่งเศส</h5>
+            <div class="con-card" id="con-card">
+                <div class="container-carditem">
+                    <div class="card-review">
+                        <img src="/image/home/cardReview/1.jpg" alt="น้ำหอมติดรถยนต์ปานหอม" id="review-image1">
+                    </div>
+                    <div class="card-review">
+                        <img src="/image/home/cardReview/2.jpg" alt="น้ำหอมติดรถยนต์ปานหอม" id="review-image2">
+                    </div>
+                    <div class="card-review">
+                        <img src="/image/home/cardReview/3.jpg" alt="น้ำหอมติดรถยนต์ปานหอม" id="review-image3">
+                    </div>
+                    <div class="card-review">
+                        <img src="/image/home/cardReview/4.jpg" alt="น้ำหอมติดรถยนต์ปานหอม" id="review-image4">
+                    </div>
+                </div>
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="video-show">
+
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ofjrh9kI4JA"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            <a href="#open-modal"><img src="/image/home/logoB.png" alt="น้ำหอมติดรถยนต์ปานหอม"></a>
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/TUBLY9sjT6Q"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+              
+        </div>
+    </main>
+    <%- include('footerClient') %> 
+    <script src="/script/script.js"></script>
+    <script src="/script/scriptShowReview.js"></script>
+</body>
+
+</html>

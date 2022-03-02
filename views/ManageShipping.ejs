@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manage Shipping</title>
+    <link rel="stylesheet" href="/css/Manage.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('navbarManage') %> 
+    
+    <main class="manage-main">
+         <div class="container-managePO">
+            <h2>รายการ จัดส่งออเดอร์</h2>
+            <div class="button-orderstatus">
+                <a href="/shipping-all"><button>ทั้งหมด</button></a>
+                <a href="/shipping-No"><button>ยังไม่จัดส่ง</button></a>
+                <a href="/shipping-finish"><button>จัดส่งแล้ว</button></a>
+                <a href="/shipping-reject"><button>พัสดุตีกลับ</button></a>
+
+            </div>
+             <table class="table-managePO">
+                 <thead class="thead-managePO">
+                     <tr>
+                         <th>No.</th>
+                         <th>order number</th>
+                         <th>date</th>
+                         <th>custumer name</th>
+                         <th>Phone number</th>
+                         <th>Adress</th>
+                         <th class="orderlist">order list</th>
+                         <th>tracking No.</th>
+                         <th>Status Shipping</th>
+                         <th>update status</th>
+                         <th>Order Success</th>
+                     </tr>
+                 </thead>
+                 <tbody class="tbody-managePO">
+                    <% if (orders) { %>
+                        <% Object.values(orders).forEach(function(data,i){ %>
+                     <tr>
+                         <form action="/update-shipping" method="post">
+                         <td><%= i+1 %></td>
+                         <td><%= data.Order_No %></td>
+                         <td><%= data.customer_timebuy %></td>
+                         <td><span><%= data.customer_name %></span><span><%= data.customer_lastname %></span></td>
+                         <td><%= data.customer_phone %></td>
+                         <td> <%= data.customer_address %> ต.<%= data.customer_subdistrict %> <%= data.customer_district %>  <%= data.customer_provine %>  <%= data.customer_zipcode %> </td>
+                         <td class="orderlist">
+                            <ul class="ul-orderlist">
+                                <% for(i=0; i< data.nameProducts.length; i++){ %>
+                                 
+                                    <li><p><%= data.nameProducts[i] %></p><p><%= data.amountProducts[i] %></p></li>
+                                    <% } %>
+                            </ul>
+                        </td> 
+                        <td class="tracking">  
+                            <input type="text" value="<%= data.tracking_No %>" id="tracking_No" name="tracking_No">
+                        </td>
+                        <td class="td-shipping  noship">
+                            <input type="text" name="Order_No" value="<%= data.Order_No %>" hidden>
+                            <select type="text" name="shipping_status" id="shipping_status" class="shipping">
+                                <option value="<%= data.shipping_status %>"><%= data.shipping_status %></option>
+                                <option value="ยังไม่จัดส่ง" >ยังไม่จัดส่ง</option>
+                                <option value="กำลังจัดส่ง" >กำลังจัดส่ง</option>
+                                <option value="จัดส่งแล้ว" >จัดส่งแล้ว</option>
+                                <option value="พัสดุตีกลับ" >พัสดุตีกลับ</option>
+                            </select>
+                            </td>  
+                       
+                        <td><button type="submit" class="update-status">update</button></td>
+                        <td><a href="/save-orderFinish/<%= data.Order_No %>"><button type="button" class="order-success">save data</button></a></td>
+                        </form>
+                    </tr>
+                    <% }) %>
+                    <% } %>
+                 </tbody>
+             </table>
+         </div>
+    </main>
+    <script src="/script/scrtiptManage.js"></script>
+</body>
+</html>

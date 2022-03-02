@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เลือกสินค้า </title>
+    <link href="/image/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('headerClient') %>    
+
+    <main class="main-SP">
+        <div class="container-sp">
+            <div class="image-select">
+                <div class="images-item">
+                    <img src="/image/selectProduct/0.jpg" >
+                    <img src="/image/selectProduct/1.jpg" >
+                    <img src="/image/selectProduct/2.jpg" >
+                </div>
+                <div class="image-show">
+                    <img src="/image/selectProduct/3.jpg" id="img-show" >
+                </div>
+            </div>
+            <div class="product-select">
+                <h3>เลือกน้ำหอมติดรถยนต์</h3>
+                <div class="container-product">
+                    <h4>รายการน้ำหอม 10ml.</h4>
+                    <ul class="ul-product" id="ul_Product">
+                        <% if (product) { %>
+                        <% Object.values(product).forEach(function(item){ %>
+                
+                        <li id="liProduct_<%=item.product_ID %>">
+                            <form  id="formid_1" action="#">
+                              <div class="nameandprice">
+                                    <input type="text" name="nameProduct<%=item.product_ID %>" id="nameProduct<%=item.product_ID %>" value="<%=item.product_Name %>" readonly>
+                                    <p>ราคา 
+                                    <input type="number" name="priceProduct" id="priceProduct<%=item.product_ID %>" value="<%=item.product_Price %>" readonly>
+                                    บาท</p>
+                                </div>
+                                <div class="choose-quantity">
+                                    <p>จำนวน</p>
+                                    <input type="number" name="amount_P" id="amountChoose<%=item.product_ID %>" step="1"  max="<%=item.product_Amount %>" min="0" value="0" readonly>
+                                    <p>ชิ้น</p>
+                                    <button type="button" class="decrement" onclick="chooseAmount(this,'<%=item.product_ID %>')">-</button>
+                                    <button type="button" class="increment" onclick="chooseAmount(this,'<%=item.product_ID %>')">+</button>
+                                    <button type="button" class="pick" onclick="pick(this,'<%=item.product_ID %>')"><i class="fas fa-shopping-cart"></i></button>
+                                </div>
+                            </form>
+                        </li>
+
+                       
+                    <% }) %>
+                    <% } %> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="container-basket" class="container-basket">
+            <div class="basket">
+                <h4> ตะกร้าสินค้าของคุณ</h4>
+                <p>รายการสินค้า</p>
+                <form action="/topayment" method="get">
+                    <input type="text" name="Order_No" value="" hidden id="Order_No">
+                    <div class="basket-detail">
+                        <ul class="ul-basket" id="ul-basket">
+                        </ul>
+                        <div class="sumamountbuys">
+                            <p>จำนวนทั้งหมด</p>
+                            <input type="number" value="0" id="sum_Amount" name="sum_Amount" readonly>
+                            <p>ชิ้น</p>
+                        </div>
+                        <div class="sumpricebuy">
+                        
+    
+                            <p>ราคารวมทั้งสิ้น</p>
+                            <input type="number" value="0" id="sum_Prices" name="sum_Prices" readonly>
+                            <p>บาท</p>
+                        </div>
+                    </div>
+                    <div class="buttom-choice">
+                        <button type="button" class="resetchoice" id="resetchoice"  onclick="return confirm('ต้องการยกเลิกสนค้าใช่ไหม?')">ยกเลิก</button>
+                        <button type="submit" class="confirmbuy" >ชำระสินค้า</button>
+                    </div>
+
+                </form>
+               
+            </div>
+        </div>
+    </main>
+
+    <%- include('footerClient') %> 
+    <script src="/script/script.js"></script>
+    <script src="/script/scriptShowImage.js"></script>
+</body>
+</html>

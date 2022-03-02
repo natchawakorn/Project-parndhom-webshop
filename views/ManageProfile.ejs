@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Profile Brand</title>
+    <link rel="stylesheet" href="/css/Manage.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('navbarManage') %> 
+    
+    <main class="manage-main">
+        <% Object.values(profile).forEach(function(profile){ %>
+         <div class="container-managePO">
+            <h2>รายละเอียดบริษัท</h2>
+             <table class="table-managePO">
+                 <thead class="thead-managePO">
+                     <tr>
+                         <th>Company Name</th>
+                         <th>Address </th>
+                         <th>sub district</th>
+                         <th>district</th>
+                         <th>province</th>
+                         <th>Zipcode</th>
+                         <th>Email</th>
+                         <th>Phone number</th>
+                     </tr>
+                 </thead>
+                 <tbody class="tbody-managePO">
+                     <tr>
+                         <td><input type="text" name="" value="<%= profile.Brand_Name %>"></td>
+                        <td><input type="text" name="" id="" value="<%= profile.Brand_Address%>"></td>
+                        <td><input type="text" name="" id="" value="<%= profile.Brand_Subdistrict%>"></td>
+                        <td><input type="text" name="" id="" value="<%= profile.Brand_District%>"></td>
+                        <td><input type="text" name="" id="" value="<%= profile.Brand_Province%>"></td>
+                        <td><input type="text" name="" id="" value="<%= profile.Brand_Postcode%>"></td>
+                        <td><input type="text" name="" id="" value="<%= profile.Brand_Email%>"></td>
+                        <td><input type="text" name="" id="" value="<%= profile.Brand_Phone%>"></td>
+                    </tr>
+                 </tbody>
+             </table>
+             <div class="button-edit">
+                <a href="#"><button type="button" class="update-status"> Edit </button></a>
+                <a href="#"><button type="button" class="delete-OR"> update</button></a>
+                <a href="#"><button type="button" class="delete-OR"> ยกเลิก</button></a>   
+             </div>
+         </div>
+         <div class="container-table">
+            <h2>follow us</h2>
+             <table class="table-managePO">
+                 <thead class="thead-managePO">
+                     <tr>
+                         <th>Line</th>
+                         <th>facebook </th>
+                         <th>IG</th>
+                         <th>YouTube</th>
+                     </tr>
+                 </thead>
+                 <tbody class="tbody-managePO">
+                     <tr>
+                         <td><input type="text" name="" value="<%= profile.Brand_Line%>"></td>
+                         <td><input type="text" name="" id="" value="<%= profile.Brand_Facebook%>"></td>
+                        <td><input type="text" name="" id="" value="<%= profile.Brand_IG%>"></td>
+                        <td><input type="text" name="" id="" value="<%= profile.Brand_Youtube_1%>"></td>
+                    </tr>
+                 </tbody>
+             </table>
+             <div class="button-edit">
+                <a href="#"><button type="button" class="update-status"> Edit </button></a>
+                <a href="#"><button type="button" class="delete-OR"> update</button></a>
+                <a href="#"><button type="button" class="delete-OR"> ยกเลิก</button></a>   
+             </div>
+         </div>
+         <% }) %>
+    </main>
+    <script src="/script/scrtiptManage.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตรวจสอบพัสดุ parndhom | ปานหอม น้ำหอมติดรถยนต์</title>
+    <link href="/image/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('headerClient') %>    
+    
+    <main class="main-status">
+        <div class="container-status">
+            <div class="s-ordernumber">
+                <input type="text" value="<%= Order_No %>" id="val-status" hidden>
+                <h3>หมายเลขออเดอร์</h3>
+                <p ><%= Order_No %></p>
+            </div>
+            <div class="s-icon">
+                <i id="icon-status" class="fas fa-check-circle"></i>
+                <h3><%= status %></h3>
+            </div>
+            <div class="s-detail">
+                <table class="s-table">
+                    <tbody>
+                        <tr>
+                            <td>ชื่อ</td>
+                            <td> <%= name %> <%= lastname %></td>
+                        </tr>
+                        <tr>
+                            <td>ที่อยู่จัดส่ง</td>
+                            <td><%= address %> </td>
+                        </tr>
+                        <tr>
+                            <td>เลขที่พัสดุ</td>
+                            <td class="tack-id"><%= tracking %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="s-button">
+                <a href="/"><button> กลับสู่หน้าแรก</button></a>
+            </div>
+        </div>
+    </main>
+
+    <%- include('footerClient') %> 
+    <script src="/script/script.js"></script>
+    <script src="/script/scriptStatusOrder.js"></script>
+    <script type="text/javascript">
+        document.onkeydown=function(e) 
+            {
+                e=e||window.event;
+                ///prevent F5 refresh page
+                if (e.keyCode === 116 ){
+                    e.keyCode = 0;
+                    if(e.preventDefault)
+                        e.preventDefault();
+                    else
+                        e.returnValue = false;
+                    return false;
+                }
+    
+                switch (event.keyCode){ 
+                case 116 : //F5 button
+                    event.returnValue = false;
+                    event.keyCode = 0;
+                    return false; 
+                case 82 : //R button
+                    if (event.ctrlKey){ 
+                        event.returnValue = false; 
+                        event.keyCode = 0;  
+                        return false; 
+                    } 
+                }
+            }
+    </script>
+   
+</body>
+</html>

@@ -1,0 +1,58 @@
+<footer class="footer">
+    <% Object.values(profile).forEach(function(profile){ %>
+    <div class="container-footer" id="contactUs">
+        <div class="foot address">
+            <p>ที่อยู่ <%= profile.Brand_Address %></p>
+            <p>ตำบล <%= profile.Brand_Subdistrict %> อำเภอ<%= profile.Brand_District %></p>
+            <p>จังหวัด <%= profile.Brand_Province %> <%= profile.Brand_Postcode %></p>
+        </div>
+        <div class="foot tel">
+
+            <p><a href="tel:<%= profile.Brand_Phone %>">เบอร์โทร <%= profile.Brand_Phone %></a></p>
+            <p>email <%= profile.Brand_Email %></p>
+        </div>
+        <div class="foot copyright">
+            <p>© parndhom 2022. All Rights Reserved.</p>
+        </div>
+        <div class="foot contact">
+            <p><a target="_blank" href="<%= profile.Brand_Facebook %>" ><i class="fab fa-facebook-square"></a></i>
+                <a href="<%= profile.Brand_Line %>" target="_blank" rel="noopener noreferrer"><i class="fab fa-line"></i></a>
+                <a href="<%= profile.Brand_IG %>" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="<%= profile.Brand_Phone %>" target="_blank" rel="noopener noreferrer"><i class="fas fa-phone-square"></i></a>
+                
+            </p>
+        </div>
+    </div>
+    <% }) %>
+<!-- Messenger ปลั๊กอินแชท Code -->
+<div id="fb-root"></div>
+
+<!-- Your ปลั๊กอินแชท code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "100929768367763");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v13.0'
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/th_TH/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</footer>

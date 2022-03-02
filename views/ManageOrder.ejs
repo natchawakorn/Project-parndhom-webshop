@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manage Shipping</title>
+    <link rel="stylesheet" href="/css/Manage.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('navbarManage') %> 
+    <main class="manage-main">
+         <div class="container-managePO">
+            <h2>รายการ สั่งซื้อ</h2>
+             <table class="table-managePO">
+                 <thead class="thead-managePO">
+                     <tr>
+                         <th>No.</th>
+                         <th>order number</th>
+                         <th>date</th>
+                         <th>custumer name</th>
+                         <th>Phone number</th>
+                         <th>Adress</th>
+                         <th class="orderlist">order list</th>
+                         <th>price/piece</th>
+                         <th>price sum</th>
+                         <th>sale</th>
+                         <th>custumer pay</th>
+                         <th>slip</th>
+                         <th>apove</th>
+                         <th>disapproved</th>
+                     </tr>
+                 </thead>
+                 <tbody class="tbody-managePO">
+                    <% if (doc) { %>
+                        <% Object.values(doc).forEach(function(data,i){ %>
+                     <tr>
+                         <td><%= i+1 %></td>
+                         <td><%= data.Order_No %></td>
+                         <td><%= data.customer_timebuy %></td>
+                         <td><span><%= data.customer_name %></span><span><%= data.customer_lastname %></span></td>
+                         <td><%= data.customer_phone %></td>
+                         <td> <%= data.customer_address %> ต.<%= data.customer_subdistrict %> <%= data.customer_district %>  <%= data.customer_provine %>  <%= data.customer_zipcode %> </td>
+                         <td>
+                            <ul class="ul-orderlist">
+                                <% for(i=0; i< data.nameProducts.length; i++){ %>
+                                <li><p><%= data.nameProducts[i] %></p><p><%= data.amountProducts[i] %></p></li>
+                                <% } %>
+                            </ul>
+                        </td> 
+                         <td>  
+                             <ul class="ul-pricelist">
+                                <% for(i=0; i< data.priceProducts.length; i++){ %>
+                                    <li><p><%= data.priceProducts[i] %></p></li>
+                                    <% } %>
+                            </ul>
+                        </td>
+                         <td><%= data.priceSum %></td>
+                         <td><%= data.shipping_Discount %></td>
+                         <td><%= data.total_pay %></td>
+                         <td>
+                             <img src="/image/slip/<%= data.customer_slipname %>" class="slipPO"alt="">
+                         </td>
+                         <td><a href="/apove-order/<%= data.Order_No %>"><button type="button" class="apove" onclick="return confirm('ต้องการ อนุมัติออเดอร์นี้?')">apove</button></a></td>
+                         <td><a href="/delete-order/<%= data._id %>"><button type="button" class="disapproved" onclick="return confirm('Delete Order?')">disapproved</button></a></td>
+                     </tr>
+                     <% }) %>
+                     <% } %> 
+                 </tbody>
+             </table>
+         </div>
+    </main>
+    <script src="/script/scrtiptManage.js"></script>
+</body>
+</html>

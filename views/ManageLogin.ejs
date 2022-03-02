@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manage Shipping</title>
+    <link rel="stylesheet" href="/css/Manage.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('navbarManage') %> 
+    
+    <main class="manage-main">
+         <div class="container-login">
+             <h3>login</h3>
+            <form action="/logintoAdmin" method="POST">
+                    <label for="login">User</label>
+                    <input type="text" name="usernameAdmin"  class="login">
+                    <label for="password">password</label>
+                    <input type="password" name="passwordAdmin"  class="password">
+                <button type="submit">login</button>
+            </form>
+         </div>
+    </main>
+    <script src="/script/scrtiptManage.js"></script>
+</body>
+</html>

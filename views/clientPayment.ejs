@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ชำระสินค้า </title>
+    <link href="/image/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('headerClient') %>    
+<main class="main-payment">
+    <form class="form-payment" id="form_buyer" action="/checkTOpay" method="post" enctype="multipart/form-data" >
+     
+        <div class="purchase-list">
+            <div class="container-list">
+                <h3>รายการสั่งซื้อ</h3>
+                <p>หมายเลขคำสั่งซื้อ <input type="text" name="Order_No" value="<%= Order_No %>" readonly></p>
+            </div>
+            <table class="table-list">
+                <thead>
+                        <th>รายการที่</th>
+                        <th>ชื่อสินค้า</th>
+                        <th>จำนวน</th>
+                        <th>ราคารวม</th>
+                </thead>
+                <tbody>
+                        <% if(typeof Order == 'string'){ %>
+                    <tr>
+                        <td><span>1</span> <input type="text" name="product_IDs" value="<%= product_IDs %>" hidden></td>
+                        <td><input type="text" name="nameProducts" value="<%= Order %>" readonly></td>
+                        <td><input type="number" name="amountProducts" value="<%= Valume %>" readonly></td>
+                        <td><input type="number" name="priceProducts" value="<%= Prices %>" readonly></td>
+               
+                    </tr>
+                        <%} else{ for(i=0; i< Order.length; i++){ %>
+                    <tr>
+                        <td> <span><%= i+1 %></span><input type="text" name="product_IDs" value="<%= product_IDs[i] %>" hidden></td>
+                        <td><input type="text" name="nameProducts" value="<%= Order[i] %>" readonly></td>
+                        <td><input type="number" name="amountProducts" value="<%= Valume[i] %>" readonly></td>
+                        <td><input type="number" name="priceProducts" value="<%= Prices[i] %>" readonly></td>
+               
+                    </tr>
+                    <% }} %>
+                
+                </tbody>
+            </table>
+
+            <div class="detail-buy">
+                <table class="table-detail-buy">
+                    <tbody>
+                        <tr>
+                            <td>จำนวนทั้งหมด</td>
+                            <td><input type="number" class="amountSum" name="amountSum" value="<%= amountSum %>" readonly></td>
+                            <td>ชิ้น</td>
+                        </tr>
+                        <tr>
+                            <td>ค่าจัดส่ง</td>
+                            <td><input type="text" name="shipping" value="50" readonly></td>
+                            <td>บาท</td>
+                        </tr>
+                        <tr>
+                            <td>รวมค่าจัดส่ง</td>
+                            <td><input type="number" class="priceSum" name="priceSum" value="<%= Pays %>" readonly></td>
+                            <td>บาท</td>
+                        </tr>
+                        <tr>
+                            <td>ส่วนลดค่าจัดส่ง</td>
+                            <td><input type="text" class="shipping-dis" value="-50" readonly>
+                                <input type="number" name="shipping_Discount" value="<%= Dis_ship %>" hidden>
+                            </td>
+                            <td>บาท</td>
+                        </tr>
+                        <tr>
+                            <td>สรุปการสั่งซื้อ</td>
+                            <td><input type="number" class="total_pay" name="total_pay" value="<%= TotalPay %>"readonly ></td>
+                            <td>บาท</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container-buyerform" >
+       
+            <div class="form-buyer"  >
+                <h3>กรอกรายละเอียดการจัดส่ง</h3>
+                <div class="container-form" >
+                    <div class="form-L">
+                        <h4>รายละเอียดผู้สั่งซื้อ </h4>
+                        <div class="form-control ">
+                            <label for="customer_sex">เพศ</label>
+                            <select type="text" id="buyer_sex" name="customer_sex">
+                                <option value="ชาย">ชาย</option>
+                                <option value="หญิง">หญิง</option>
+                            </select>
+                            <small>กรุณาป้อน</small>
+                        </div>
+                        <div class="form-control ">
+                            <label for="customer_name">ชื่อ</label>
+                            <input type="text" id="buyer_name" name="customer_name" placeholder="กรุณาป้อนชื่อ">
+                            <small>กรุณาป้อน</small>
+                        </div>
+                        <div class="form-control ">
+                            <label for="customer_lastname">นามสกุล</label>
+                            <input type="text" id="buyer_lastname" name="customer_lastname" placeholder="กรุณาป้อนนามสกุล">
+                            <small>กรุณาป้อน</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="customer_phone">เบอร์โทร</label>
+                            <input type="text" id="buyer_phone" name="customer_phone" placeholder="กรุณาป้อนเบอร์โทร" Maxlength= "10" >
+                            <small>กรุณาป้อน</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="customer_email">อีเมล</label>
+                            <input type="text" id="buyer_email" name="customer_email" placeholder="กรุณาป้อน email" />
+                            <small>กรุณาป้อน</small>
+                        </div>
+                    </div>
+                    <div class="form-C">
+                        <h4>ที่อยู่สำหรับจัดส่ง </h4>
+                        <div class="form-control">
+                            <label for="customer_address">บ้านเลขที่/หมู่/ซอย/ถนน</label>
+                            <input name="customer_address" id="buyer_address" ></input>
+                            <small>กรุณาป้อน</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="customer_provine">จังหวัด</label>
+                            <select name="customer_provine" id="buyer_provine">
+                                <% for(i=0; i< province.length; i++){ %>
+                                    <option value="<%= province[i].name_th %>" ><%= province[i].name_th %></option>
+                                    <% } %>
+                            </select>
+                            <small>กรุณาป้อน</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="customer_district">อำเภอ</label>
+                            <input type="text" name="customer_district" id="buyer_district">
+                            <small>กรุณาป้อน</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="customer_subdistrict">ตำบล</label>
+                            <input type="text" name="customer_subdistrict" id="buyer_subdistrict">
+                            <small>กรุณาป้อน</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="customer_zipcode">รหัสไปรษณีย์</label>
+                            <input type="text" name="customer_zipcode" id="buyer_zipcode" Maxlength="5">
+                            <small>กรุณาป้อน</small>
+                        </div>
+                    </div>
+                    <div class="form-R">
+                        <h3>แจ้งโอน จำนวนเงินที่ต้องชำระ <span><%= TotalPay %></span> บาท</h3>
+                        <p>โอนเงินผ่านบัญชี</p>
+                        <img src="/image/home/prompay.jpg" >
+                        <p>ธนาคาร <span>กสิกรไทย</span> </p>
+                        <p>เลขที่บัญชี <span> 065-3-74822-1</span></p>
+                        <p> ชื่อบัญชี <span> นายณัชชวกร อาษาวิเศษ </span></p>
+                        <div class="form-control">
+                            <label for="customer_slip">แนบสลิปเงินโอน</label>
+                            <input type="file" name="customer_slipname" id="buyer_slip">
+                            <small>กรุณาป้อน</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-control-button">
+                    <button class="back-button" type="button" onclick="history.back()">ย้อนกลับ</button>
+                    <button class="no-confirm" onclick="return confirm('ต้องการล้างข้อมูลทั้งหมด?')" type="reset">ล้างข้อมูล</button>
+                    <button class="confirm" type="submit" >ยืนยันการชำระ</button>
+                </div>
+            </div>
+        </div>
+ </form>
+
+</main>
+<%- include('footerClient') %> 
+<script src="/script/scriptselectProduct.js"></script>
+
+</body>
+</html>

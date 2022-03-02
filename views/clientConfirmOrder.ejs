@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ยืนยันการสั่งซื้อ</title>
+    <link href="/image/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('headerClient') %>
+    <main class="main-confirmorder">
+        
+    <div class="i-main">
+        <div class="box-detail">
+            <div class="i-box">
+                <form class="i-form" action="/confirmPay" method="POST">
+                    <div class="i-ornumber">
+                        <h3>เลขที่คำสั่งซื้อ</h3>
+                        <p><%= data.Order_No %> </p>
+                        <p>
+                            <label for="customer_timebuy">เวลาสั่งซื้อ</label>
+                            <input class="timeconfirm" type="text" name="customer_timebuy"  value="<%= data.customer_timebuy %>" readonly>    
+                        </p>
+                    </div>
+                    <div class="i-address">
+                        <h3>ที่อยู่จัดส่ง</h3>
+                        <ul>
+                            <li>
+                                <label>ชื่อ</label>
+                                <input class="input-shot" name="customer_name" type="text" value="<%= data.customer_name %>" readonly>
+                                <label>นามสกุล</label>
+                                <input class="input-shot" name="custumer_lastname"type="text" value="<%= data.customer_lastname %>" readonly>
+                          </li>
+                          <li>
+                            <label for="">email</label>
+                            <input class="inputEmail"  type="text" name="customer_email" value="<%= data.customer_email %>" readonly>  
+                       
+                          </li>
+                           <li>
+                            <label for="tel">เบอร์โทร</label>
+                            <input type="text" name="customer_phone" value="<%= data.customer_phone %>" readonly>
+                           </li>
+                           <li><label for="">ที่อยู่</label>
+                                <input class="inputAddress" type="text" name="customer_address" value="<%= data.customer_address %>" readonly>
+                            </li>
+                            <li> 
+                                <label for="">ตำบล</label>
+                                <input type="text" name="customer_subdistrict" value="<%= data.customer_subdistrict %>" readonly>
+                                <label for="">อำเภอ</label>
+                                <input type="text" name="customer_district" value="<%= data.customer_district %>" readonly>
+                                <label for="">จังหวัด</label>
+                                <input type="text" name="customer_provine" value="<%= data.customer_provine %>" readonly>
+                            </li>
+                            <li> <label for="">รหัสไปรษณีย์</label>
+                                <input type="text" name="customer_zipcode" value="<%= data.customer_zipcode %>" readonly>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="i-order">
+                        <h3>รายการสั่งซื้อ</h3>
+                        <ul class="ul-order">
+                            <% if(typeof data.nameProducts == 'string'){ %>
+                            <li>   
+                                <input name="product_IDs" type="text" value="<%= data.product_IDs %>" hidden>
+                                <input name="nameProducts" type="text" value="<%= data.nameProducts %>" readonly><span>จำนวน</span>
+                                <input name="amountProducts" type="number" value="<%= data.amountProducts %>" readonly><span>ชิ้น</span>
+                                <input name="priceProducts" type="number" value="<%= data.priceProducts %>" readonly><span>บาท</span>
+                            </li>
+                            <%} else{ for(i=0; i< data.nameProducts.length; i++){ %>
+                                <li>   
+                                    <input name="product_IDs" type="text" value="<%= data.product_IDs[i] %>" hidden>
+                                    <input name="nameProducts" type="text" value="<%= data.nameProducts[i] %>" readonly><span>จำนวน</span>
+                                    <input name="amountProducts" type="number" value="<%= data.amountProducts[i] %>" readonly><span>ชิ้น</span>
+                                    <input name="priceProducts" type="number" value="<%= data.priceProducts[i] %>" readonly><span>บาท</span>
+                                </li>
+                                <% }} %>
+                        </ul>
+                    
+                    </div>
+                    <div class="i-pay">
+                        <div>
+                            <span>จำนวนทั้งหมด</span>
+                            <input type="number" name="amountSum" value="<%= data.amountSum %>" readonly><span>ชิ้น</span>
+                        </div>
+                        <div>
+                            <span>ยอดเงินที่ชำระ</span>
+                            <input type="number" name="total_pay" value="<%= data.total_pay %>" readonly><span>บาท</span>
+
+                        </div>
+                    
+                    </div>
+                    <div class="i-button">
+                        <button class="i-cancel" id="cancel-i" type="button" onclick="history.back()"> แก้ไข</button>
+                        <button class="i-confirm" type="confirm"> ยืนยัน</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('footerClient') %> 
+    <script src="/script/scriptselectProduct.js"></script>
+    <script src="/script/script.js"></script>
+</body>
+</html>
+</body>
+</html>

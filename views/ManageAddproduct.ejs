@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/css/Manage.css">
+    <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <%- include('navbarManage') %>    
+    <main class="manage-main">
+         <div class="container-manageProduct">
+             <div class="edit-products">
+                <h2>Products</h2>
+                <table class="table-managePO">
+                    <thead class="thead-managePO">
+                        <tr>
+                            <th>ID Product</th>
+                            <th>Product Name</th>
+                            <th>Price/Piece</th>
+                            <th>valume</th>
+                            <th>type</th>
+                            <th>update status</th>
+                            <th>Order Success</th>
+                            <th>detail product</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody-managePO">
+                    <% if (product) { %>
+                        <% Object.values(product).forEach(function(item){ %>
+                                   
+                        <tr>
+                            <td><%=item.product_ID %></td>
+                            <td><%=item.product_Name %></td>
+                            <td><%=item.product_Price %></td>
+                            <td><%=item.product_Amount %></td>
+                            <td><%=item.Product_Type %></td>
+                            
+                            <td><a href="/edit-product/<%= item._id %>"><button type="button" class="update-status"> Edit </button></a></td>
+                            <td><a href="/delete-product/<%=item.product_ID %>"><button type="button" class="delete-OR"> Delete</button></a></td>
+                            <td><%=item.product_Detail %></td>
+                       </tr>
+                       <% }) %>
+                    <% } %> 
+                    </tbody>
+                </table>
+             </div>
+
+             <div class="add-porducts">
+                <button type="button" class="button-Add"> Add Product</button>
+                <form id="add_products" class="form-addproduct" action="/addProduct" method="post" >
+                    <div class="container-form close-form" >
+                        <div class="form-L">
+                            <div class="form-control ">
+                                <label for="product_ID">Product ID</label>
+                                <input type="text" id="product_ID" name="product_ID" >
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control ">
+                                <label for="product_Name">Product Name</label>
+                                <input type="text" id="product_Name" name="product_Name" >
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control">
+                                <label for="product_Price">ราคา</label>
+                                <input type="text" id="product_Price" name="product_Price"  >
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control">
+                                <label for="product_Amount">จำนวน</label>
+                                <input type="text" id="product_Amount" name="product_Amount" >
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control">
+                                <label for="product_Detail">รายละเอียดสินค้า</label>
+                                <input name="product_Detail" id="product_Detail" >
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control">
+                                <label for="Product_Type">ประเภท</label> 
+                                <select name="Product_Type" id="Product_Type">
+                                    <option value="perfumeCar">น้ำหอมติดรถ</option>
+                                    <option value="perfume">น้ำหอมฉีดตัว</option>
+                                    <option value="perfumeOther">จิปาถะ</option>
+                                    <option value="perfumeFill">แบบเติม</option>
+                                </select>
+                            </div>
+                            <div class="form-control-button">
+                                <button class="confirm" type="submit">Save</button>
+                                <button class="no-confirm" onclick="return confirm('ต้องการล้างข้อมูลทั้งหมด?')" type="reset">cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+             </div>
+            <input type="text" value="<%= edit %>" id="value-edit" hidden >
+         <div class="container-edit">
+             <div class="edit-porducts">
+                <form id="edit_products" class="form-editproduct"  method="post" action="/update-product">
+                    <div class="container-formedit" >
+                            <div class="form-control ">
+                                <label for="product_ID">Product ID</label>
+                                <input type="text" name="product_ID" value="<%= edit.product_ID %>">
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control ">
+                                <label for="product_Name">Product Name</label>
+                                <input type="text"  name="product_Name" value="<%= edit.product_Name %>">
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control">
+                                <label for="product_Price">ราคา</label>
+                                <input type="text" name="product_Price"  value="<%= edit.product_Price %>">
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control">
+                                <label for="product_Amount">จำนวน</label>
+                                <input type="text" name="product_Amount" value="<%= edit.product_Amount %>"  >
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control">
+                                <label for="product_Detail">รายละเอียดสินค้า</label>
+                                <input name="product_Detail" value="<%= edit.product_Detail %>" >
+                                <small>กรุณาป้อน</small>
+                            </div>
+                            <div class="form-control">
+                                <label for="Product_Type">ประเภท</label> 
+                                <select name="Product_Type" >
+                                    <option value="perfumeCar">น้ำหอมติดรถ</option>
+                                    <option value="perfume">น้ำหอมฉีดตัว</option>
+                                    <option value="perfumeOther">จิปาถะ</option>
+                                    <option value="perfumeFill">แบบเติม</option>
+                                </select>
+                            </div>
+                            <div class="form-control-button">
+                                <button class="update-product" type="submit">update</button>
+                                <button class="no-confirm" onClick="location.href=location.href">cancel</button>
+                            </div>
+                    </div>
+                </form>
+             </div>
+            </div>
+         </div>
+    </main>
+    <script src="/script/scrtiptManage.js"></script>
+</body>
+</html>
