@@ -1,10 +1,10 @@
 const express = require('express')
 const path = require('path')
+require("dotenv").config()
 const CookieParser = require('cookie-parser')
 const session = require('express-session')
 const routerManage = require('./routes/routerManage')
 const routerClient = require('./routes/router')
-require("dotenv").config()
 
 const app = express();
 
