@@ -1,10 +1,13 @@
 const mongoose = require('mongoose')
-const dbUrl = 'mongodb+srv://parndhomDB:kong1100@cluster0.3q8b6.mongodb.net/parndhomwebshopDB' ;
+
+const dbUrl = process.env.MONGODB_URI;
 
 mongoose.connect(dbUrl,{
     useNewUrlParser:true,
     useUnifiedTopology:true
-}).catch(err=>console.log(err))
+})
+.then(()=>console.log("connect success"))
+.catch(err=>console.log(err))
 
 let customerSchema = mongoose.Schema({
     Order_No:String,

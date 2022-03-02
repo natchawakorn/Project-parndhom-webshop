@@ -4,7 +4,9 @@ const dbUrl = process.env.MONGODB_URI;
 mongoose.connect(dbUrl,{
     useNewUrlParser:true,
     useUnifiedTopology:true
-}).catch(err=>console.log(err))
+})
+.then(()=>console.log("connect success"))
+.catch(err=>console.log(err))
 
 let sessionschema = mongoose.Schema({
     Username_parndhom:String,
