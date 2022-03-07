@@ -114,7 +114,7 @@ router.get('/topayment', (req, res) => {
 })
 
 let dataCustumer = new Object();
-router.post('/checkTOpay', upload.single("customer_slipname"),(req, res) => {
+router.post('/checktopay', upload.single("customer_slipname"),(req, res) => {
 
     let data = {
         Order_No: req.body.Order_No,
