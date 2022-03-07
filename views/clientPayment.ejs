@@ -7,9 +7,11 @@
     <title>ชำระสินค้า </title>
     <link href="/image/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/showload.css">
     <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <%- include('Allshowload') %> 
     <%- include('headerClient') %>    
 <main class="main-payment">
     <form class="form-payment" id="form_buyer" action="/checkTOpay" method="post" enctype="multipart/form-data" >
@@ -167,7 +169,7 @@
                 </div>
                 <div class="form-control-button">
                     <button class="back-button" type="button" onclick="history.back()">ย้อนกลับ</button>
-                    <button class="no-confirm" onclick="return confirm('ต้องการล้างข้อมูลทั้งหมด?')" type="reset">ล้างข้อมูล</button>
+                    <button class="no-confirm" onclick="confirm('ต้องการล้างข้อมูลทั้งหมด?')" type="reset">ล้างข้อมูล</button>
                     <button class="confirm" type="submit" >ยืนยันการชำระ</button>
                 </div>
             </div>
@@ -176,6 +178,7 @@
 
 </main>
 <%- include('footerClient') %> 
+<script src="/script/scriptShowload.js"></script>
 <script src="/script/scriptselectProduct.js"></script>
 
 </body>

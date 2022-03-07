@@ -44,7 +44,7 @@
                         <td><%= data.tracking_No %></td>
                         <td><%= data.customer_timeapprove %> </td>
                         <td><a href="#"><button type="button" class="detail-custumer">Detail Custumer</button></a></td>
-                        <td><a href="/delete-order-success/<%= data._id %>"><button type="button" class="delete-OR" onclick="return confirm('Delete Order?')">Delete Order</button></a></td>
+                        <td><a href="/delete-order-success/<%= data._id %>"><button type="button" class="delete-OR" onclick="confirm('Delete Order?')">Delete Order</button></a></td>
                      </tr>
                     
                     <% }) %>

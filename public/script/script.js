@@ -1,8 +1,5 @@
-
 const navbarforhide = document.querySelector('.header')
-
 let lastscrollY = 0;
-
 
 window.addEventListener('scroll',()=>{
     if(window.scrollY > lastscrollY){
@@ -10,10 +7,8 @@ window.addEventListener('scroll',()=>{
 
     }else{
         navbarforhide.classList.remove('hideheader')
-
     }
     lastscrollY = window.scrollY;
-   
 })
 
 
@@ -177,4 +172,6 @@ function delete_libuythis(id) {
 }
 
 
-
+function confirm_cancel_products() {
+    return confirm("ต้องการยกเลิกสนค้าใช่ไหม?");
+}

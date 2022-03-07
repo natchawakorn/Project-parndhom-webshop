@@ -62,8 +62,8 @@
                          <td>
                              <img src="/image/slip/<%= data.customer_slipname %>" class="slipPO"alt="">
                          </td>
-                         <td><a href="/apove-order/<%= data.Order_No %>"><button type="button" class="apove" onclick="return confirm('ต้องการ อนุมัติออเดอร์นี้?')">apove</button></a></td>
-                         <td><a href="/delete-order/<%= data._id %>"><button type="button" class="disapproved" onclick="return confirm('Delete Order?')">disapproved</button></a></td>
+                         <td><a href="/apove-order/<%= data.Order_No %>"><button type="button" class="apove" onclick="confirm('ต้องการ อนุมัติออเดอร์นี้?')">apove</button></a></td>
+                         <td><a href="/delete-order/<%= data._id %>"><button type="button" class="disapproved" onclick="confirm('Delete Order?')">disapproved</button></a></td>
                      </tr>
                      <% }) %>
                      <% } %> 

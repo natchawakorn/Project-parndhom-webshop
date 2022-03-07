@@ -11,15 +11,16 @@
     <%- include('metashareClient') %> 
     <link href="/image/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/showload.css">
     <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-
+    <%- include('Allshowload') %> 
     <%- include('headerClient') %>    
-
+  
     <main class="main-index">
-
+      
         <div class="container-proshow">
             <div class="bg-proshow">
                 <% Object.values(advert).forEach(function(advert){ %>
@@ -152,6 +153,7 @@
         </div>
     </main>
     <%- include('footerClient') %> 
+    <script src="/script/scriptShowload.js"></script>
     <script src="/script/script.js"></script>
     <script src="/script/scriptShowReview.js"></script>
 </body>

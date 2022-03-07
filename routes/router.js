@@ -140,7 +140,6 @@ router.post('/checkTOpay', upload.single("customer_slipname"), (req, res) => {
 
 router.post('/confirmPay', (req, res) => {
 
-
     data = new Model_customer({
         Order_No: dataCustumer.Order_No,
         product_IDs: dataCustumer.product_IDs,
@@ -200,12 +199,6 @@ router.post('/checkOrder', (req, res) => {
         })
     })
 })
-
-
-
-
-
-
 
 
 module.exports = router;

@@ -7,9 +7,11 @@
     <title>เลือกสินค้า </title>
     <link href="/image/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/showload.css">
     <script src="https://kit.fontawesome.com/79561afa19.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <%- include('Allshowload') %> 
     <%- include('headerClient') %>    
 
     <main class="main-SP">
@@ -73,15 +75,14 @@
                             <p>ชิ้น</p>
                         </div>
                         <div class="sumpricebuy">
-                        
-    
+                
                             <p>ราคารวมทั้งสิ้น</p>
                             <input type="number" value="0" id="sum_Prices" name="sum_Prices" readonly>
                             <p>บาท</p>
                         </div>
                     </div>
                     <div class="buttom-choice">
-                        <button type="button" class="resetchoice" id="resetchoice"  onclick="return confirm('ต้องการยกเลิกสนค้าใช่ไหม?')">ยกเลิก</button>
+                        <button type="reset" class="resetchoice" id="resetchoice">ยกเลิก</button>
                         <button type="submit" class="confirmbuy" >ชำระสินค้า</button>
                     </div>
 
@@ -92,6 +93,14 @@
     </main>
 
     <%- include('footerClient') %> 
+    <script>
+    const loadshow = document.querySelector('.loadshow');
+
+        window.addEventListener('load',function(){
+        loadshow.style.display = 'none' ;
+        })
+
+    </script>
     <script src="/script/script.js"></script>
     <script src="/script/scriptShowImage.js"></script>
 </body>
