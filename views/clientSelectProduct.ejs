@@ -64,7 +64,7 @@
             <div class="basket">
                 <h4> ตะกร้าสินค้าของคุณ</h4>
                 <p>รายการสินค้า</p>
-                <form action="/topayment" method="get">
+                <form action="/topayment" method="get" id="link_topay">
                     <input type="text" name="Order_No" value="" hidden id="Order_No">
                     <div class="basket-detail">
                         <ul class="ul-basket" id="ul-basket">
@@ -95,12 +95,23 @@
     <%- include('footerClient') %> 
     <script>
     const loadshow = document.querySelector('.loadshow');
+    const link_home = document.getElementById('link_home');
+    const link_topay =document.getElementById('link_topay');
 
         window.addEventListener('load',function(){
         loadshow.style.display = 'none' ;
         })
 
+        link_home.addEventListener('click', function(){
+            loadshow.style.display = 'block';
+        
+        })
+        link_topay.addEventListener('click', function(){
+            loadshow.style.display = 'block';
+
+        })
     </script>
+    
     <script src="/script/script.js"></script>
     <script src="/script/scriptShowImage.js"></script>
 </body>
