@@ -132,7 +132,7 @@ router.post('/checkTOpay', upload.single("customer_slipname"), (req, res) => {
     };
     dataCustumer = data;
     Model_profile.find().exec((err, docProfile) => {
-
+        if (err) { console.log(err) }
         res.render('clientConfirmOrder.ejs', { profile: docProfile, data: data })
     })
 })

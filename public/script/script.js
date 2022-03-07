@@ -172,6 +172,3 @@ function delete_libuythis(id) {
 }
 
 
-function confirm_cancel_products() {
-    return confirm("ต้องการยกเลิกสนค้าใช่ไหม?");
-}
