@@ -47,6 +47,13 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/errConnet',(req,res)=>{
+    Model_profile.find().exec((err, docProfile) => {
+     res.render('404.ejs', { profile: docProfile})
+    })
+})
+
+
 router.get('/howtoBuy', (req, res) => {
 
     Model_profile.find().exec((err, docProfile) => {
@@ -69,7 +76,6 @@ router.get('/selectProduct', (req, res) => {
 
 router.get('/topayment', (req, res) => {
 
-
     if (req.query.sum_Amount == '0') {
         res.redirect('/selectProduct')
     } else {
@@ -85,6 +91,10 @@ router.get('/topayment', (req, res) => {
 
         Model_profile.find().exec((err, docProfile) => {
             Homepage.provinces.find().exec((err, docProvince) => {
+                if(err){
+                    res.redirect('/errConnet')
+                }
+
                 res.render('clientPayment.ejs', {
                     profile: docProfile,
                     Order: order,
@@ -104,7 +114,7 @@ router.get('/topayment', (req, res) => {
 })
 
 let dataCustumer = new Object();
-router.post('/checkTOpay', upload.single("customer_slipname"), (req, res) => {
+router.post('/checkTOpay', upload.single("customer_slipname"),(req, res) => {
 
     let data = {
         Order_No: req.body.Order_No,
@@ -131,8 +141,11 @@ router.post('/checkTOpay', upload.single("customer_slipname"), (req, res) => {
         customer_timebuy: thisTime()
     };
     dataCustumer = data;
-    Model_profile.find().exec((err, docProfile) => {
-        if (err) { console.log(err) }
+    Model_profile.find().exec((err, docProfile)=> {
+        if(err){
+            console.log(err)
+            res.redirect('/errConnet')
+        }
         res.render('clientConfirmOrder.ejs', { profile: docProfile, data: data })
     })
 })
@@ -170,18 +183,22 @@ router.post('/confirmPay', (req, res) => {
 
     Model_profile.find().exec((err, docProfile) => {
         Model_customer.saveCustomer(data, (err) => {
-            if (err) { console.log(err) }
+            if (err) { 
+                console.log(err)   
+                res.redirect('/errConnet') }
             res.render('clientStatusOrder.ejs', { profile: docProfile, Order_No: dataCustumer.Order_No, status: "สั่งซื้อเรียบร้อย ระบบกำลังตรวจสอบ", name: dataCustumer.customer_name, lastname: dataCustumer.customer_lastname, address: `${dataCustumer.customer_address} ${dataCustumer.customer_subdistrict}`, tracking: "รออัพเดรต" })
         })
     })
 })
 
 
-
 router.post('/checkOrder', (req, res) => {
     const check_order = req.body.check_order;
 
     Model_profile.find().exec((err, docProfile) => {
+        if(err){
+            res.redirect('/errConnet')
+        }
         Model_customer.findOne({ Order_No: check_order }).exec((err, order) => {
             if (order === null) {
                 res.render('clientStatusOrder.ejs', { profile: docProfile, Order_No: "", status: "ไม่พบข้อมูล", name: "ไม่พบข้อมูล", lastname: "ไม่พบข้อมูล", address: "ไม่พบข้อมูล", tracking: "ไม่พบข้อมูล" })
@@ -195,6 +212,9 @@ router.post('/checkOrder', (req, res) => {
                 res.render('clientStatusOrder.ejs', { profile: docProfile, Order_No: check_order, status: "จัดส่งเรียบร้อย", name: order.customer_name, lastname: order.customer_lastname, address: `${order.customer_address} ${order.customer_subdistrict}`, tracking: order.tracking_No })
             } else if (order.shipping_status === 'พัสดุตีกลับ') {
                 res.render('clientStatusOrder.ejs', { profile: docProfile, Order_No: check_order, status: "พัสดุตีกลับ ไม่มีคนรับ", name: order.customer_name, lastname: order.customer_lastname, address: `${order.customer_address} ${order.customer_subdistrict}`, tracking: order.tracking_No })
+            }
+            if(err){
+                res.redirect('/errConnet')
             }
         })
     })
