@@ -1,23 +1,24 @@
  //slide popular li
 
 const popular_li = document.querySelectorAll('.popular-li')
-
-window.addEventListener('scroll',slideli())
-
 function slideli(){
-    const calcutetHeight = window.innerHeight-200;
- 
-        popular_li.forEach(lis=>{
-                const topPosition = lis.getBoundingClientRect().top;
-                if(topPosition){
-                        lis.classList.add('showpop');
-                     
-                }else{
-                        lis.classList.remove('showpop');
-                }
-        });
+        const calcutetHeight = window.innerHeight-200;
+     
+            popular_li.forEach(lis=>{
+                    const topPosition = lis.getBoundingClientRect().top;
+                    if(topPosition){
+                            lis.classList.add('showpop');
+                         
+                    }else{
+                            lis.classList.remove('showpop');
+                    }
+            })
+    
+    }
 
-}
+window.addEventListener('scroll',slideli)
+
+
 
 
 const review_image1 = document.getElementById('review-image1')
