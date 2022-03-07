@@ -7,16 +7,12 @@ function slideli(){
             popular_li.forEach(lis=>{
                     const topPosition = lis.getBoundingClientRect().top;
                     if(topPosition){
-                            lis.classList.add('showpop');
-                         
-                    }else{
-                            lis.classList.remove('showpop');
-                    }
+                            lis.classList.add('showpop')}
             })
     
     }
 
-window.addEventListener('scroll',slideli)
+window.addEventListener('scroll',slideli())
 
 
 

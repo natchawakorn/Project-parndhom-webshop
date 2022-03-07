@@ -10,9 +10,9 @@ images_item.parentElement.addEventListener('click',(e)=>{
 })
 
 const Order_No = document.getElementById('Order_No')
-Order_No.setAttribute('value','OD'+Date.now());
+    Order_No.setAttribute('value','OD'+Date.now());
 const resetchoice = document.getElementById('resetchoice');
-resetchoice.addEventListener('click',()=>{window.location.reload()})
+    resetchoice.addEventListener('click',()=>{window.location.reload()})
 
 
 

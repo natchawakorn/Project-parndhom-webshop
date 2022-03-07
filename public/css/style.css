@@ -28,7 +28,6 @@
 html, body {
     margin:0;
     padding:0;
-    height:100%;
     width:100vw;
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -1396,25 +1395,37 @@ padding: 10px;
 
 @media screen and (max-width:890px) {
     header {
+        position: fixed;
+        top: 0;
         width:100vw;
         display: flex;
         justify-content: center;
         height: 80px;
-
+        z-index: 5;
+        transition: var(--tran-02);
     }
+  
+
     .logo{
         position:absolute;
-        top: 50px;
-        left: 5px;
+        background-color:#636262;
+        width: 100vw;
+        height: 20px;
+        top: 80px;
+        left: 6px;
+        margin: 0;
+        padding: 0;
+  
     }
 
     .conlogo{
         position: absolute;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255);
         width: 70px;
         height: 70px;
-        left: 0;
-        box-shadow: 5px 5px 10px lightslategrey;
+        left: 40%;
+        top: -25px;
+        box-shadow: 5px 5px 10px rgb(50, 52, 53);
         border-radius:50%;
         padding: 0;
         transition: left 0.5s;
@@ -1423,15 +1434,21 @@ padding: 10px;
         position: absolute;
         width: 70px;
         margin-top: 0;
-        z-index: 5;
         left:0;
+        z-index: 6;
     }
     .navbar{
-  
         width: 100%;
-        position: relative;
+        position: absolute;
+        z-index: 4;
+        top: 0px;
+      
     }
- 
+    /* -------------------hide ---------------- */
+    .header.hideheader{
+        top: -150px;
+    }
+
     .navbar-ul li a i{
         font-size: 20px;
     }
@@ -1439,6 +1456,8 @@ padding: 10px;
         display: none;
     }
     .main-index{
+        position: relative;
+        padding-top: 100px;
         display: flex;
         flex-direction: column;
     }
@@ -1533,6 +1552,20 @@ padding: 10px;
         font-size: 25px;
         margin: 5px 0;
     }
+
+    .ifram-facebook{
+        width: 100%;
+        padding-top: 45px;
+        margin-top: 50px;
+        box-shadow: var(--shadow-border);
+        border-radius: 10px;
+    }
+    .ifram-facebook iframe{
+        width: 100%;
+    }
+
+
+
    .box-review{
        padding: 10px 5px;
        height: auto;

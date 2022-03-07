@@ -1,3 +1,22 @@
+
+const navbarforhide = document.querySelector('.header')
+
+let lastscrollY = 0;
+
+
+window.addEventListener('scroll',()=>{
+    if(window.scrollY > lastscrollY){
+        navbarforhide.classList.add('hideheader')
+
+    }else{
+        navbarforhide.classList.remove('hideheader')
+
+    }
+    lastscrollY = window.scrollY;
+   
+})
+
+
 const input_Checkorder = document.getElementById('input-checkorder')
 const check_order = document.getElementById('check-order')
 
@@ -156,3 +175,6 @@ function delete_libuythis(id) {
     const li_this = document.getElementById(`li_buythis${id}`)
     li_this.remove();
 }
+
+
+

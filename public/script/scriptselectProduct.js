@@ -82,12 +82,12 @@ const validateEmail = (email) => {
   }
 
 function checkZipcode(input) {
-    var regExp = /[0-9]{5}$/i;
+    let regExp = /[0-9]{5}$/i;
     return regExp.test(input);
 }
 
   function checkPhone(input){
-    var regExp = /^0[0-9]{9}$/i;
+    let regExp = /^0[0-9]{9}$/i;
     return regExp.test(input);
 }
 
