@@ -1505,8 +1505,8 @@ padding: 10px;
 
     .button-proshow{
         background-color: rgba(219, 162, 40, 0.8);
-        bottom: 0;
-        transform: translate(-90px,-200px);
+        bottom: 180px;
+        left: 35%;
         line-height: 20px;
     }
     .button-proshow a{
@@ -1516,8 +1516,8 @@ padding: 10px;
         width: 100%;
         padding: 10px 5px;
     }
-    .button-proshow:hover{
-        transform: translateX(0);
+    .button-proshow:active{
+        transform: scale(1.1);
     }
 
     .con-content{
