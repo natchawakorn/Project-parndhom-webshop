@@ -353,8 +353,8 @@ routerManage.post('/logintoAdmin',(req,res)=>{
         const usernameAdmin = req.body.usernameAdmin;
         const passwordAdmin = req.body.passwordAdmin;
         const timeExpireAdmin = 1000*60*60;  // 5 mins
-    Model_session.findOne({session_parndhom:'parndhomsession'}).exec((err,data)=>{
-        if(usernameAdmin === data.Username_parndhom && passwordAdmin === data.Password_parndhom){
+    Model_session.findOne({session:'session'}).exec((err,data)=>{
+        if(usernameAdmin === data.Username && passwordAdmin === data.Password){
             req.session.usernameAdmin = usernameAdmin;
             req.session.passwordAdmin = passwordAdmin;
             req.session.loginParndhom = true;

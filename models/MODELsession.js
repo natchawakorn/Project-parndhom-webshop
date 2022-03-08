@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const dbUrl = process.env.MONGODB_URI;
+const dbUrl = process.env.MONGO;
 
 mongoose.connect(dbUrl,{
     useNewUrlParser:true,
@@ -9,9 +9,9 @@ mongoose.connect(dbUrl,{
 .catch(err=>console.log(err))
 
 let sessionschema = mongoose.Schema({
-    Username_parndhom:String,
-    Password_parndhom:String,
-    session_parndhom:String
+    Username:String,
+    Password:String,
+    session:String
 })
 
 let Model_session = mongoose.model("pr_session",sessionschema)
